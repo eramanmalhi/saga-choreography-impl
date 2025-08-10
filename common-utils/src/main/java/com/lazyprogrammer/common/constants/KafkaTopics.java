@@ -6,5 +6,4 @@ public class KafkaTopics {
     public static final String STOCK_CONFIRMED = "stock-confirmed";
     public static final String STOCK_UNAVAILABLE = "stock-unavailable";
     public static final String PAYMENT_FAILED = "payment-failed";
-
 }

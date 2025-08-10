@@ -24,10 +24,6 @@ public class OrderRepository {
         return DB.get(orderId);
     }
 
-    public static Order get(String orderId) {
-        return DB.get(orderId);
-    }
-
     public static Collection<Order> getAll() {
         return DB.values();
     }

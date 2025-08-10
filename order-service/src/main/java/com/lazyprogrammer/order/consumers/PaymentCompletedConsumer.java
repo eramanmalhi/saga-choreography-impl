@@ -20,9 +20,9 @@ public class PaymentCompletedConsumer {
     public void handleOrderCreated(ConsumerRecord<String, PaymentCompletedEvent> record) {
         PaymentCompletedEvent event = record.value();
         log.info("Received PaymentCompletedEvent: {}", event);
-        Order order = OrderRepository.get(event.orderId());
+        Order order = OrderRepository.findById(event.orderId());
         Order updatedOrder = new Order(order.orderId(), order.productId(),
-                order.quantity(), OrderStatus.PLACED, order.userId());
+                order.quantity(), OrderStatus.CONFIRMED, order.userId());
         OrderRepository.save(updatedOrder);
         log.info("All Orders: {}", OrderRepository.getAll());
     }

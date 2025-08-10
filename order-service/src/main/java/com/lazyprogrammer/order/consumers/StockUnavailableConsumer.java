@@ -18,7 +18,7 @@ public class StockUnavailableConsumer {
     public void handleOrderCreated(ConsumerRecord<String, StockUnavailableEvent> record) {
         StockUnavailableEvent event = record.value();
         log.info("Received StockUnavailableEvent: {}", event);
-        Order order = OrderRepository.get(event.orderId());
+        Order order = OrderRepository.findById(event.orderId());
         Order updatedOrder = new Order(order.orderId(), order.productId(),
                 order.quantity(), OrderStatus.FAILED_STOCK_UNAVAILABLE,
                 order.userId());

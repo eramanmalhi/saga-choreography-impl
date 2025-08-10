@@ -17,12 +17,12 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public class PaymentConsumer {
+public class PaymentProcessorConsumer {
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private static final Logger log =
-            LoggerFactory.getLogger(PaymentConsumer.class.getName());
+            LoggerFactory.getLogger(PaymentProcessorConsumer.class.getName());
 
-    public PaymentConsumer(KafkaTemplate<String, Object> kafkaTemplate) {
+    public PaymentProcessorConsumer(KafkaTemplate<String, Object> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
@@ -44,12 +44,13 @@ public class PaymentConsumer {
             PaymentCompletedEvent paymentCompletedEvent =
                     new PaymentCompletedEvent(transactionId, event.orderId(),
                             transactionSuccess, event.userId());
-            //TODO add listener to this topic in order service
             kafkaTemplate.send(KafkaTopics.PAYMENT_COMPLETED, paymentCompletedEvent);
             log.info("Sent PaymentCompletedEvent: {}", paymentCompletedEvent);
         } else {
             PaymentFailedEvent paymentFailedEvent = new PaymentFailedEvent(transactionId, event.orderId(),
-                    transactionSuccess, event.userId(), "Transaction Failed, " +
+                    transactionSuccess, event.userId(), event.productId(),
+                    event.quantity(),
+                    "Transaction Failed, " +
                     "Please try again later.");
             kafkaTemplate.send(KafkaTopics.PAYMENT_FAILED, paymentFailedEvent);
             log.info("Sent PaymentFailedEvent: {}", paymentFailedEvent);

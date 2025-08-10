@@ -23,12 +23,6 @@
             <artifactId>spring-kafka</artifactId>
         </dependency>
 
-        <!-- Spring Boot -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
         <!-- Spring Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

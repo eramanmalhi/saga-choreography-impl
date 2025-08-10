@@ -48,8 +48,7 @@ public class OrderCreatedEventConsumer {
             StockConfirmedEvent stockConfirmed =
                     new StockConfirmedEvent(inventory.productId(), Boolean.TRUE,
                             event.orderId(), event.userId(),
-                            (event.quantity()) * inventory.price(),
-                            event.quantity());
+                            (event.quantity()) * inventory.price());
             kafkaTemplate.send(KafkaTopics.STOCK_CONFIRMED, stockConfirmed);
             log.info("Sent StockConfirmedEvent: {}", stockConfirmed);
         }
