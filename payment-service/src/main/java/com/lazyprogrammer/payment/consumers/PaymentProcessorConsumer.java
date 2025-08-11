@@ -42,7 +42,7 @@ public class PaymentProcessorConsumer {
         TransactionRepository.save(transaction);
         if (transactionSuccess) {
             PaymentCompletedEvent paymentCompletedEvent =
-                    new PaymentCompletedEvent(transactionId, event.orderId(),
+                    new PaymentCompletedEvent(event.orderId(), transactionId,
                             transactionSuccess, event.userId());
             kafkaTemplate.send(KafkaTopics.PAYMENT_COMPLETED, paymentCompletedEvent);
             log.info("Sent PaymentCompletedEvent: {}", paymentCompletedEvent);
@@ -51,7 +51,7 @@ public class PaymentProcessorConsumer {
                     transactionSuccess, event.userId(), event.productId(),
                     event.quantity(),
                     "Transaction Failed, " +
-                    "Please try again later.");
+                            "Please try again later.");
             kafkaTemplate.send(KafkaTopics.PAYMENT_FAILED, paymentFailedEvent);
             log.info("Sent PaymentFailedEvent: {}", paymentFailedEvent);
         }
