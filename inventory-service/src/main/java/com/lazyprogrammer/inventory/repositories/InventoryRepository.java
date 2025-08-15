@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class InventoryRepository {
@@ -29,8 +30,8 @@ public class InventoryRepository {
         return DB.get(productId);
     }
 
-    public static Collection<Inventory> getAll() {
-        return DB.values();
+    public static List<Inventory> getAll() {
+        return DB.values().stream().toList();
     }
 
     public static void populateDB() {

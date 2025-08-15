@@ -11,6 +11,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -35,5 +36,9 @@ public class OrderService {
         kafkaTemplate.send(KafkaTopics.ORDER_CREATED, orderCreatedEvent);
         log.info("Published order created event: {}", orderCreatedEvent);
         return order;
+    }
+
+    public List<Order> getAllOrders() {
+        return OrderRepository.getAll();
     }
 }

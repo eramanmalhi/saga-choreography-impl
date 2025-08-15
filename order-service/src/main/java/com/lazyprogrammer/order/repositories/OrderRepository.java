@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class OrderRepository {
@@ -24,7 +25,7 @@ public class OrderRepository {
         return DB.get(orderId);
     }
 
-    public static Collection<Order> getAll() {
-        return DB.values();
+    public static List<Order> getAll() {
+        return DB.values().stream().toList();
     }
 }

@@ -47,7 +47,7 @@ public class PaymentProcessorConsumer {
             kafkaTemplate.send(KafkaTopics.PAYMENT_COMPLETED, paymentCompletedEvent);
             log.info("Sent PaymentCompletedEvent: {}", paymentCompletedEvent);
         } else {
-            PaymentFailedEvent paymentFailedEvent = new PaymentFailedEvent(transactionId, event.orderId(),
+            PaymentFailedEvent paymentFailedEvent = new PaymentFailedEvent(event.orderId(), transactionId,
                     transactionSuccess, event.userId(), event.productId(),
                     event.quantity(),
                     "Transaction Failed, " +
