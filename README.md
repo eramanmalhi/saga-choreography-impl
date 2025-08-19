@@ -50,4 +50,4 @@ Ensure parent reference is set:
       <groupId>com.example</groupId>
       <artifactId>saga-choreography-impl</artifactId>
       <version>1.0-SNAPSHOT</version>
-    </parent>```
+    </parent>
