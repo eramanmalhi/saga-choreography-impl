@@ -48,6 +48,6 @@ Ensure parent reference is set:
    ```xml
     <parent>
       <groupId>com.example</groupId>
-      <artifactId>saga-choreography</artifactId>
+      <artifactId>saga-choreography-impl</artifactId>
       <version>1.0-SNAPSHOT</version>
     </parent>```
