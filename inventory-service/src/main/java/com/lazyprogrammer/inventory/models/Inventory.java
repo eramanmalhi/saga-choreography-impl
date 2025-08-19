@@ -1,6 +1,7 @@
 package com.lazyprogrammer.inventory.models;
 
-public record Inventory(String productId, String productName,
-                        int qualtityInStock,
+public record Inventory(String productId,
+                        String productName,
+                        int quantityInStock,
                         int price) {
 }

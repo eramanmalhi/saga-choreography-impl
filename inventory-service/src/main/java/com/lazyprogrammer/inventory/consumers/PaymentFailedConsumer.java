@@ -22,7 +22,7 @@ public class PaymentFailedConsumer {
         Inventory inventory = InventoryRepository.getByProductId(event.productId());
         Inventory updatedInventory = new Inventory(inventory.productId(),
                 inventory.productName(),
-                inventory.qualtityInStock() + event.quantity(),
+                inventory.quantityInStock() + event.quantity(),
                 inventory.price());
         InventoryRepository.save(updatedInventory);
     }

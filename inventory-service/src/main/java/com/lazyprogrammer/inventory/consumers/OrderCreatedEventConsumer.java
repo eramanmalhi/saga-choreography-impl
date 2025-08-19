@@ -30,7 +30,7 @@ public class OrderCreatedEventConsumer {
         log.info("Received OrderCreatedEvent: {}", event);
         int available = InventoryRepository.getAll().stream()
                 .filter(product -> product.productId().equalsIgnoreCase(event.productId()))
-                .map(Inventory::qualtityInStock)
+                .map(Inventory::quantityInStock)
                 .findFirst().orElse(-1);
         if (available - event.quantity() < 1) {
             StockUnavailableEvent stockUnavailableEvent =
@@ -42,7 +42,7 @@ public class OrderCreatedEventConsumer {
             Inventory inventory = InventoryRepository.getByProductId(event.productId());
             Inventory updatedInventory = new Inventory(inventory.productId(),
                     inventory.productName(),
-                    inventory.qualtityInStock() - event.quantity(),
+                    inventory.quantityInStock() - event.quantity(),
                     inventory.price());
             InventoryRepository.save(updatedInventory);
             StockConfirmedEvent stockConfirmed =
