@@ -1,0 +1,17 @@
+STOCK UNAVAILABLE
+Submit an order with
+productId=101
+userId=102
+quantity=6
+
+PAYMENT FAILED
+Submit an order with
+productId=101
+userId=101
+quantity=4
+
+SUCCESS
+Submit an order with
+productId=101
+userId=102
+quantity=2
